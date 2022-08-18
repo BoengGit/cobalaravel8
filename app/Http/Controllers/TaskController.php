@@ -19,6 +19,7 @@ class TaskController extends Controller
     {
         Task::create([
             'list' => $request->list,
+            'mark' => false,
         ]);
 
         return back(); //redirect()->back();
