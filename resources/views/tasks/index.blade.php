@@ -1,25 +1,35 @@
 <x-app-layout>
-    <h1>Tasks</h1>
-
-    <form action="/tasks" method="post">
-        @csrf
-        <input type="text" name="list" placeholder="The name of the task">
-        <button type="submit">Add</button>
-    </form>
-
-    <ul style="list-style-type: none">
-        @foreach ($tasks as $index => $task)
-            <li style="margin-bottom: 15px">
-                {{ $index + 1 }} - {{ $task->list }}
-                <div>
-                    <a style="color: salmon" href="/tasks/{{ $task->id }}/edit">edit</a>
-                    <form action="/tasks/{{ $task->id }}" method="post" style="display: inline;">
+    <div class="container">  
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Create new Task</div>
+                    <div class="card-body">
+                        <form action="/tasks" method="post" class="d-flex">
                         @csrf
-                        @method('delete')
-                        <button type="submit">Delete</button>
-                    </form>
+                        <input class="form-control me-2" type="text" name="list" placeholder="The name of the task">
+                        <button class="btn btn-primary" type="submit">Add</button>
+                        </form>
+                    </div>
                 </div>
-            </li>
-        @endforeach
-    </ul>
+            </div>
+        </div>
+
+        <ul class="list-group mt-4">
+            @foreach ($tasks as $index => $task)
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ $index + 1 }} - {{ $task->list }}
+                    <div class="d-flex"> 
+                        <a class="btn btn-primary me-2" href="/tasks/{{ $task->id }}/edit">edit</a>
+                        <form action="/tasks/{{ $task->id }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button class="btn btn-danger" type="submit">Delete</button>
+                        </form>
+                    </div>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+
 </x-app-layout>
