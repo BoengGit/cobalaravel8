@@ -2,19 +2,9 @@
     <div class="container">  
         <div class="row">
             <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">Create new Task</div>
-                    <div class="card-body">
-                        <form action="{{ route('tasks.store') }}" method="post" class="d-flex">
-                        @csrf
-                        <input class="form-control me-2" type="text" name="list" placeholder="The name of the task">
-                        <button class="btn btn-primary" type="submit">Add</button>
-                        </form>
-                    </div>
-                </div>
+                @include('tasks._create')
             </div>
         </div>
-
         <ul class="list-group mt-4">
             @foreach ($tasks as $index => $task)
                 <li class="list-group-item d-flex justify-content-between align-items-center">

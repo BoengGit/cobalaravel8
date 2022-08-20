@@ -17,6 +17,10 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'list' => ['required'],
+        ]);
+        
         Task::create($request->all());
 
         return back(); //redirect()->back();
