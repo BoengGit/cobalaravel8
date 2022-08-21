@@ -17,10 +17,15 @@ class RegistrationController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'min:3'],
-            'username' => ['required', 'alpha_num', 'min:3', 'max:25'],
-            'email' => ['required', 'email'],
+            'username' => ['required', 'unique:users', 'alpha_num', 'min:3', 'max:25'],
+            'email' => ['required','unique:users', 'email'],
             'password' => ['required', 'min:8'],
         ]);
+
+        // $user = User::where('email', $request->email)->orWhere('username', $request->username)->first();
+        // if ($user) {
+        //     dd('user sudah ada');
+        // }
 
         User::create([
             'name' => $request->name,
