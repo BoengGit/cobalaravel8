@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -23,7 +24,7 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($attributes)) {
-            return redirect('/')->with('success', 'You are now logged ');
+            return redirect(RouteServiceProvider::HOME)->with('success', 'You are now logged ');
         }
 
         // $user = User::whereEmail($request->email)->first();
